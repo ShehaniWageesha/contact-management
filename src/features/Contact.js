@@ -3,8 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { deleteContact, editContact } from "../store/actions";
 import ContactTable from "./ContactTable";
 import EditContactForm from "./EditContactForm";
-import { Dialog } from "primereact/dialog";
-import { Button } from "primereact/button";
+import { ConfirmDialog } from "primereact/confirmdialog";
+import { Toast } from "primereact/toast";
 
 const Contact = () => {
   const contacts = useSelector((state) => state.contacts);
@@ -18,6 +18,7 @@ const Contact = () => {
     phone: "",
   });
   const [contactToDelete, setContactToDelete] = useState(null);
+  let toast;
 
   const handleEdit = (contact) => {
     setEditedContact(contact);
@@ -28,6 +29,11 @@ const Contact = () => {
   const saveEditedContact = () => {
     dispatch(editContact(editedContact));
     setVisibleEditDialog(false);
+    toast.show({
+      severity: "success",
+      summary: "Success",
+      detail: "Contact edited successfully",
+    });
   };
 
   const onInputChange = (e) => {
@@ -43,6 +49,11 @@ const Contact = () => {
   const confirmDelete = () => {
     dispatch(deleteContact(contactToDelete.id));
     setVisibleDeleteDialog(false);
+    toast.show({
+      severity: "success",
+      summary: "Success",
+      detail: "Contact deleted successfully",
+    });
   };
 
   return (
@@ -60,18 +71,20 @@ const Contact = () => {
         onInputChange={onInputChange}
         saveEditedContact={saveEditedContact}
       />
-      <Dialog
-        header="Confirm"
+      <ConfirmDialog
         visible={visibleDeleteDialog}
         onHide={() => setVisibleDeleteDialog(false)}
-      >
-        <div>Are you sure you want to delete this contact?</div>
-        <br></br>
-        <div className="p-dialog-footer">
-          <Button label="No" onClick={() => setVisibleDeleteDialog(false)} />
-          <Button label="Yes" onClick={confirmDelete} />
-        </div>
-      </Dialog>
+        message="Are you sure you want to delete this contact?"
+        header="Confirm"
+        icon="pi pi-exclamation-triangle"
+        acceptClassName="p-button-danger"
+        rejectClassName="p-button-secondary"
+        acceptLabel="Yes"
+        rejectLabel="No"
+        accept={confirmDelete}
+        reject={() => setVisibleDeleteDialog(false)}
+      />
+      <Toast ref={(el) => (toast = el)} />
     </div>
   );
 };

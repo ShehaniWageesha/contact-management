@@ -4,6 +4,7 @@ import { addContact, editContact } from "../store/actions";
 import { Dialog } from "primereact/dialog";
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
+import { Toast } from "primereact/toast";
 
 const AddContactForm = ({ contact }) => {
   const dispatch = useDispatch();
@@ -11,6 +12,7 @@ const AddContactForm = ({ contact }) => {
     contact || { name: "", email: "", phone: "" }
   );
   const [visible, setVisible] = useState(false);
+  let toast;
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -24,6 +26,11 @@ const AddContactForm = ({ contact }) => {
       dispatch(addContact({ ...formData, id: Date.now() }));
     }
     setVisible(false);
+    toast.show({
+      severity: "success",
+      summary: "Success",
+      detail: "Contact added successfully",
+    });
   };
 
   return (
@@ -33,7 +40,9 @@ const AddContactForm = ({ contact }) => {
         onClick={() => setVisible(true)}
         style={{ float: "right" }}
       />
-      <br></br><br></br><br></br>
+      <br></br>
+      <br></br>
+      <br></br>
       <Dialog
         header={contact ? "Edit Contact" : "Add Contact"}
         visible={visible}
@@ -53,7 +62,7 @@ const AddContactForm = ({ contact }) => {
             <label htmlFor="email">Email</label>
             <InputText
               id="email"
-              name="email"              
+              name="email"
               value={formData.email}
               onChange={handleChange}
             />
@@ -73,6 +82,7 @@ const AddContactForm = ({ contact }) => {
           <Button label="Save" onClick={handleSubmit} />
         </div>
       </Dialog>
+      <Toast ref={(el) => (toast = el)} />
     </div>
   );
 };
