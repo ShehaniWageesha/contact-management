@@ -17,7 +17,7 @@ const ContactTable = ({
     >
       <Column field="name" header="Name" />
       <Column field="email" header="Email" />
-      <Column field="phone" header="Phone" />
+      <Column field="phone" header="Phone Number" />
       <Column
         header="Actions"
         body={(rowData) => (

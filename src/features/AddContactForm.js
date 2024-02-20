@@ -33,9 +33,7 @@ const AddContactForm = ({ contact }) => {
         onClick={() => setVisible(true)}
         style={{ float: "right" }}
       />
-      <br></br>
-      <br></br>
-      <br></br>
+      <br></br><br></br><br></br>
       <Dialog
         header={contact ? "Edit Contact" : "Add Contact"}
         visible={visible}
@@ -55,7 +53,7 @@ const AddContactForm = ({ contact }) => {
             <label htmlFor="email">Email</label>
             <InputText
               id="email"
-              name="email"
+              name="email"              
               value={formData.email}
               onChange={handleChange}
             />
