@@ -12,11 +12,7 @@ const Contact = () => {
   const [selectedContact, setSelectedContact] = useState(null);
   const [visibleEditDialog, setVisibleEditDialog] = useState(false);
   const [visibleDeleteDialog, setVisibleDeleteDialog] = useState(false);
-  const [editedContact, setEditedContact] = useState({
-    name: "",
-    email: "",
-    phone: "",
-  });
+  const [editedContact, setEditedContact] = useState({ name: "", email: "", phone: "" });
   const [contactToDelete, setContactToDelete] = useState(null);
   let toast;
 

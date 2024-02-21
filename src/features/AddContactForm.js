@@ -8,9 +8,7 @@ import { Toast } from "primereact/toast";
 
 const AddContactForm = ({ contact }) => {
   const dispatch = useDispatch();
-  const [formData, setFormData] = useState(
-    contact || { name: "", email: "", phone: "" }
-  );
+  const [formData, setFormData] = useState(contact || { name: "", email: "", phone: "" }  );
   const [visible, setVisible] = useState(false);
   let toast;
 
@@ -40,11 +38,9 @@ const AddContactForm = ({ contact }) => {
         onClick={() => setVisible(true)}
         style={{ float: "right" }}
       />
-      <br></br>
-      <br></br>
-      <br></br>
+      <br></br><br></br><br></br>
       <Dialog
-        header={contact ? "Edit Contact" : "Add Contact"}
+        header="Add Contact"
         visible={visible}
         onHide={() => setVisible(false)}
       >

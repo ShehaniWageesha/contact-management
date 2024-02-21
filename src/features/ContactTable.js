@@ -3,12 +3,7 @@ import { DataTable } from "primereact/datatable";
 import { Column } from "primereact/column";
 import { Button } from "primereact/button";
 
-const ContactTable = ({
-  contacts,
-  selectedContact,
-  handleEdit,
-  handleDelete,
-}) => {
+const ContactTable = ({ contacts, selectedContact, handleEdit, handleDelete }) => {
   return (
     <DataTable
       value={contacts}

@@ -3,13 +3,7 @@ import { Dialog } from "primereact/dialog";
 import { InputText } from "primereact/inputtext";
 import { Button } from "primereact/button";
 
-const EditContactForm = ({
-  visible,
-  onHide,
-  editedContact,
-  onInputChange,
-  saveEditedContact,
-}) => {
+const EditContactForm = ({ visible, onHide, editedContact, onInputChange, saveEditedContact }) => {
   return (
     <Dialog header="Edit Contact" visible={visible} onHide={onHide}>
       <div className="p-fluid">
